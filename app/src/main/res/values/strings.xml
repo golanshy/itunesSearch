@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">iTunes search</string>
+    <string name="no_internet">No Internet connection</string>
+    <string name="missing_track_name">Track unknown</string>
+    <string name="missing_artist_name">Artist unknown</string>
+    <string name="missing_collection_name">Collection unknown</string>
+    <string name="delete">DELETE</string>
+    <string name="track">Track</string>
+    <string name="artist">Artist</string>
+    <string name="collection">Collection</string>
+    <string name="delete_confirmation_title">Delete confirmation</string>
+    <string name="delete_confirmation_body">Please confirm you wish to delete this item</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="deleted_successfully">Item successfully deleted</string>
+    <string name="delete_failed">Failed to delete item</string>
+
+</resources>
