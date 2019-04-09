@@ -41,10 +41,6 @@ class ResultsView(var context: ResultsFragment?) {
         }
     }
 
-    fun finish() {
-        context?.activity?.finish()
-    }
-
     fun getString(resourceId: Int): String? {
         return context?.activity?.getString(resourceId)
     }
@@ -66,7 +62,6 @@ class ResultsView(var context: ResultsFragment?) {
     }
 
     fun showError(message: String?) {
-        context?.activity?.runOnUiThread { Toast.makeText(context?.activity, message, Toast.LENGTH_SHORT).show() }
     }
 
     fun updateAdapter() {

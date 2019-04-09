@@ -30,7 +30,7 @@ class ResultsPresenter(
         view.setRefreshing(isRefreshing = true)
         return model.isNetworkAvailable().doOnNext { networkAvailable ->
             if (!networkAvailable) {
-                view.showError(view.getString(me.golanshay.android.itunessearch.R.string.no_internet))
+                view.showError(view.getString(R.string.no_internet))
             }
         }.filter { true }.flatMap { model.provideListResults() }
             .subscribeOn(rxSchedulers.internet()).observeOn(rxSchedulers.androidThread()).subscribe(
@@ -44,23 +44,6 @@ class ResultsPresenter(
                     }
                 }
             )
-    }
-
-    internal fun processResults(results: List<ITuneSearchResult>?) {
-        view.context?.viewModel?.results = ArrayList()
-        results?.forEach {
-            it.visited =
-                view.context?.viewModel?.visitedMap?.size != null && view.context?.viewModel?.visitedMap?.size!! > 0 && it.trackId != null && view.context?.viewModel?.visitedMap?.contains(
-                    it.trackId
-                )!!
-            if (!(view.context?.viewModel?.removedMap?.size != null && view.context?.viewModel?.removedMap?.size!! > 0 && it.trackId != null && view.context?.viewModel?.removedMap?.contains(
-                    it.trackId
-                )!!)
-            ) {
-                view.context?.viewModel?.results!!.add(it)
-            }
-        }
-        view.swapAdapter(view.context?.viewModel?.results!!)
     }
 
     private fun respondToClick(): Disposable {
@@ -109,5 +92,22 @@ class ResultsPresenter(
                 }
             }
         }
+    }
+
+    internal fun processResults(results: List<ITuneSearchResult>?) {
+        view.context?.viewModel?.results = ArrayList()
+        results?.forEach {
+            it.visited =
+                view.context?.viewModel?.visitedMap?.size != null && view.context?.viewModel?.visitedMap?.size!! > 0 && it.trackId != null && view.context?.viewModel?.visitedMap?.contains(
+                    it.trackId
+                )!!
+            if (!(view.context?.viewModel?.removedMap?.size != null && view.context?.viewModel?.removedMap?.size!! > 0 && it.trackId != null && view.context?.viewModel?.removedMap?.contains(
+                    it.trackId
+                )!!)
+            ) {
+                view.context?.viewModel?.results!!.add(it)
+            }
+        }
+        view.swapAdapter(view.context?.viewModel?.results!!)
     }
 }
