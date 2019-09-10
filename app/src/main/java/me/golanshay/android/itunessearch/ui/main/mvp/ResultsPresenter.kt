@@ -68,18 +68,20 @@ class ResultsPresenter(
                     val builder = AlertDialog.Builder(view.context?.activity!!)
                     builder.setTitle(view.context?.activity?.getString(R.string.delete_confirmation_title))
                     builder.setMessage(view.context?.activity?.getString(R.string.delete_confirmation_body))
-                    builder.setPositiveButton(view.context?.activity?.getString(R.string.yes)) { _, _ -> run {
-                        view.context?.viewModel?.removedMap?.put(
-                            view.context?.viewModel?.results!![integer.toInt()].trackId!!,
-                            true
-                        )
-                        processResults(view.context?.viewModel?.results)
-                        Toast.makeText(
-                            view.context?.activity,
-                            view.context?.activity?.getString(R.string.deleted_successfully),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } }
+                    builder.setPositiveButton(view.context?.activity?.getString(R.string.yes)) { _, _ ->
+                        run {
+                            view.context?.viewModel?.removedMap?.put(
+                                view.context?.viewModel?.results!![integer.toInt()].trackId!!,
+                                true
+                            )
+                            processResults(view.context?.viewModel?.results)
+                            Toast.makeText(
+                                view.context?.activity,
+                                view.context?.activity?.getString(R.string.deleted_successfully),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                     builder.setNegativeButton(view.context?.activity?.getString(R.string.no)) { dialog, _ -> dialog.dismiss() }
                     val dialog: AlertDialog = builder.create()
                     dialog.show()
